@@ -28,6 +28,9 @@
     #cake {
       position: relative;
     }
+    #audio{
+      position: relative;
+    }
     #candle {
       position: absolute;
       bottom: 35px;
@@ -41,24 +44,41 @@
 </head>
 <body>
   <div id="cake">
-    <img src="birthday_cake.png" alt="生日蛋糕" width="300" height="300">
+
+    <!--<img src="birthday_cake1.png" alt="生日蛋糕" width="300" height="300">-->
     <!--<img id="candle" src="candle.png" alt="蠟燭" width="30" height="60">-->
-      <div id="birthday"></div>
-      <audio controls autoplay>
+  <div id="birthday">
+  </div>
+  
+  <div id="audio">
+  <audio controls autoplay>
 <source src="happybirthday.ogg" type="audio/ogg" />
 <source src="happybirthday.mp3" type="audio/mpeg" />
 Your browser does not support the audio element.
 </audio>
   </div>
-
+  </div>
   <script>
+var max=3;
+var img_name='birthday_cake'+Math.floor(Math.random() * max)+'.png';
     // 獲取網址中的名字參數
     const urlParams = new URLSearchParams(window.location.search);
     const name = urlParams.get('name') || '小明'; // 如果未提供名字，則使用默認值 '小明'
-
+    display_image(img_name, 
+                 300, 
+                 300, 
+                 '生日蛋糕');
     // 更新祝賀消息
-    document.getElementById('birthday').textContent = `${name}:
-生日快樂！`;
+    document.getElementById('birthday').textContent = `${name}:生日快樂！`;
+
+function display_image(src, width, height, alt) {
+    var a = document.createElement("img");
+    a.src = src;
+    a.width = width;
+    a.height = height;
+    a.alt = alt;
+    document.getElementById('cake').appendChild(a);
+	}    
   </script>
 </body>
 </html>
