@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>生日快樂</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #000000;
+    }
+    #birthday {
+      font-size: 48px;
+      font-weight: bold;
+      color: #ff4500;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: birthdayAnimation 2s linear infinite alternate;
+    }
+    @keyframes birthdayAnimation {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.2); }
+    }
+    #cake {
+      position: relative;
+    }
+    #candle {
+      position: absolute;
+      bottom: 35px;
+      animation: candleAnimation 1s ease-in-out infinite alternate;
+    }
+    @keyframes candleAnimation {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-10px); }
+    }
+  </style>
+</head>
+<body>
+  <div id="cake">
+    <img src="birthday_cake.png" alt="生日蛋糕" width="300" height="300">
+    <!--<img id="candle" src="candle.png" alt="蠟燭" width="30" height="60">-->
+      <div id="birthday"></div>
+  </div>
+
+  <script>
+    // 獲取網址中的名字參數
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name') || '小明'; // 如果未提供名字，則使用默認值 '小明'
+
+    // 更新祝賀消息
+    document.getElementById('birthday').textContent = `${name}:
+生日快樂！`;
+  </script>
+</body>
+</html>
+
